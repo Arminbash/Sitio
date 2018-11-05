@@ -1,0 +1,136 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<body data-open="click" data-menu="vertical-menu" data-col="2-columns" class="vertical-layout vertical-menu 2-columns  fixed-navbar">
+
+    @Html.Partial(@"~/Views/Shared/_Bar.cshtml")
+    <!-- Contenido -->
+    <!-- Cards -->
+    <div class="app-content content container-fluid">
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                <!-- stats -->
+                <div class="row">
+                    <div class="col-xl-3 col-lg-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div class="media">
+                                        <div class="media-body text-xs-left">
+                                            <h3 class="teal">10</h3>
+                                            <span>Usuarios conectados</span>
+                                        </div>
+                                        <div class="media-right media-middle">
+                                            <i class="fa fa-users teal font-large-2 float-xs-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div class="media">
+                                        <div class="media-body text-xs-left">
+                                            <h3 class="red">32.872$</h3>
+                                            <span>Cambio del dolar</span>
+                                        </div>
+                                        <div class="media-right media-middle">
+                                            <i class="fa fa-usd red font-large-2 float-xs-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div class="media">
+                                        <div class="media-body text-xs-left">
+                                            <h3 class="blue">1300</h3>
+                                            <span>Cantidad de visitas hoy</span>
+                                        </div>
+                                        <div class="media-right media-middle">
+                                            <i class="fa fa-eye blue font-large-2 float-xs-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-lg-6 col-xs-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-block">
+                                    <div class="media">
+                                        <div class="media-body text-xs-left">
+                                            <h3 class="yellow">03:15</h3>
+                                            <span>Hora de ingreso</span>
+                                        </div>
+                                        <div class="media-right media-middle">
+                                            <i class="fa fa-clock-o yellow font-large-2 float-xs-right"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End cards-->
+    <!-- Diagrama -->
+    <div class="app-content content container-fluid">
+        <div class="content-wrapper">
+            <div class="content-header row">
+                <div class="content-header-left col-md-6 col-xs-12 mb-1">
+                    <h2 class="content-header-title">Lista de productos proximos a acabarse</h2>
+                </div>
+            </div>
+            <div class="content-body">
+                <!-- line chart section start -->
+                <section id="chartjs-line-charts">
+                    <!-- Line Chart -->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">5 productos proximos a acabarse</h4>
+                                    <a class="heading-elements-toggle"><i class="icon-ellipsis font-medium-3"></i></a>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a data-action="collapse"><i class="fa fa-minus"></i></a></li>
+                                            <li><a data-action="reload"><i class="fa fa-refresh"></i></a></li>
+                                            <li><a data-action="expand"><i class="fa fa-arrows-alt"></i></a></li>
+                                            <li><a data-action="close"><i class="fa fa-times"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body collapse in">
+                                    <div class="card-block chartjs">
+                                        <canvas id="line-chart" height="450"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- // line chart section end -->
+            </div>
+        </div>
+    </div>
+    <!-- End diagrama-->
+    <!--Footer-->
+    <footer class="footer footer-static footer-light navbar-border">
+        <p class="clearfix text-muted text-sm-center mb-0 px-2"><span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2018 <a href="#" target="_blank" class="text-bold-800 grey darken-2">MSCORP </a>, Todos los derechos reservados. </span></p>
+    </footer>

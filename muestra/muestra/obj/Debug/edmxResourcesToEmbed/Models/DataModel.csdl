@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="muestraModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="imagenes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="imagen" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="personas" Relationship="Self.FK__personas__imagen__09DE7BCC" FromRole="imagenes" ToRole="personas" />
+    <NavigationProperty Name="productos" Relationship="Self.FK__productos__image__0EA330E9" FromRole="imagenes" ToRole="productos" />
+  </EntityType>
+  <EntityType Name="pagina">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="users_id" Type="Int32" />
+    <Property Name="producto_id" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="productos" Relationship="Self.FK__pagina__producto__1920BF5C" FromRole="pagina" ToRole="productos" />
+    <NavigationProperty Name="users" Relationship="Self.FK__pagina__users_id__182C9B23" FromRole="pagina" ToRole="users" />
+  </EntityType>
+  <EntityType Name="personas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="users_id" Type="Int32" />
+    <Property Name="imagen_id" Type="Int32" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="imagenes" Relationship="Self.FK__personas__imagen__09DE7BCC" FromRole="personas" ToRole="imagenes" />
+    <NavigationProperty Name="users" Relationship="Self.FK__personas__users___08EA5793" FromRole="personas" ToRole="users" />
+  </EntityType>
+  <EntityType Name="productos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="imagen_id" Type="Int32" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="precio" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="existencia" Type="Int32" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="imagenes" Relationship="Self.FK__productos__image__0EA330E9" FromRole="productos" ToRole="imagenes" />
+    <NavigationProperty Name="pagina" Relationship="Self.FK__pagina__producto__1920BF5C" FromRole="productos" ToRole="pagina" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="pagina" Relationship="Self.FK__pagina__users_id__182C9B23" FromRole="users" ToRole="pagina" />
+    <NavigationProperty Name="personas" Relationship="Self.FK__personas__users___08EA5793" FromRole="users" ToRole="personas" />
+    <NavigationProperty Name="visitas" Relationship="Self.FK__visitas__users_i__1367E606" FromRole="users" ToRole="visitas" />
+  </EntityType>
+  <EntityType Name="visitas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="users_id" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" Precision="0" />
+    <Property Name="active" Type="Boolean" />
+    <NavigationProperty Name="users" Relationship="Self.FK__visitas__users_i__1367E606" FromRole="visitas" ToRole="users" />
+  </EntityType>
+  <Association Name="FK__personas__imagen__09DE7BCC">
+    <End Role="imagenes" Type="Self.imagenes" Multiplicity="0..1" />
+    <End Role="personas" Type="Self.personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="imagenes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="personas">
+        <PropertyRef Name="imagen_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__productos__image__0EA330E9">
+    <End Role="imagenes" Type="Self.imagenes" Multiplicity="0..1" />
+    <End Role="productos" Type="Self.productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="imagenes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productos">
+        <PropertyRef Name="imagen_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__pagina__producto__1920BF5C">
+    <End Role="productos" Type="Self.productos" Multiplicity="0..1" />
+    <End Role="pagina" Type="Self.pagina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productos">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pagina">
+        <PropertyRef Name="producto_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__pagina__users_id__182C9B23">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="pagina" Type="Self.pagina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pagina">
+        <PropertyRef Name="users_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__personas__users___08EA5793">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="personas" Type="Self.personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="personas">
+        <PropertyRef Name="users_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__visitas__users_i__1367E606">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="visitas" Type="Self.visitas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="visitas">
+        <PropertyRef Name="users_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="muestraEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="imagenes" EntityType="Self.imagenes" />
+    <EntitySet Name="pagina" EntityType="Self.pagina" />
+    <EntitySet Name="personas" EntityType="Self.personas" />
+    <EntitySet Name="productos" EntityType="Self.productos" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <EntitySet Name="visitas" EntityType="Self.visitas" />
+    <AssociationSet Name="FK__personas__imagen__09DE7BCC" Association="Self.FK__personas__imagen__09DE7BCC">
+      <End Role="imagenes" EntitySet="imagenes" />
+      <End Role="personas" EntitySet="personas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__productos__image__0EA330E9" Association="Self.FK__productos__image__0EA330E9">
+      <End Role="imagenes" EntitySet="imagenes" />
+      <End Role="productos" EntitySet="productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__pagina__producto__1920BF5C" Association="Self.FK__pagina__producto__1920BF5C">
+      <End Role="productos" EntitySet="productos" />
+      <End Role="pagina" EntitySet="pagina" />
+    </AssociationSet>
+    <AssociationSet Name="FK__pagina__users_id__182C9B23" Association="Self.FK__pagina__users_id__182C9B23">
+      <End Role="users" EntitySet="users" />
+      <End Role="pagina" EntitySet="pagina" />
+    </AssociationSet>
+    <AssociationSet Name="FK__personas__users___08EA5793" Association="Self.FK__personas__users___08EA5793">
+      <End Role="users" EntitySet="users" />
+      <End Role="personas" EntitySet="personas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__visitas__users_i__1367E606" Association="Self.FK__visitas__users_i__1367E606">
+      <End Role="users" EntitySet="users" />
+      <End Role="visitas" EntitySet="visitas" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
